@@ -1,3 +1,6 @@
+#ifndef HEADERS_H_INCLUDED
+#define HEADERS_H_INCLUDED
+
 //Add all headers here so they don't need to be copied and recompiled every time a file changes
 
 #include <iostream>
@@ -9,3 +12,5 @@
 #include <fstream>
 
 using namespace std;
+
+#endif // HEADERS_H_INCLUDED
