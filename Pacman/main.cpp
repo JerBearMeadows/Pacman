@@ -5,36 +5,37 @@
 
 using namespace std;
 
-int main()
-{
-    cout << "Hello World";
-    return 0;
-}
-/*
 int main(int argc, char ** argv)
 {
-
     SDL_Plotter g(1000,1000);
     int x,y, xd, yd;
-    int R,G,B;
+    int R, G, B;
+    int dir = 0;
+    char key;
+    x = y = 500;
 
     while (!g.getQuit())
     {
-    	x = rand()%g.getCol();
-    	y = rand()%g.getRow();
-    	R = rand()%256;
-    	G = rand()%256;
-    	B = rand()%256;
-    	for(xd = 0; xd < 10 && x + xd < g.getCol(); xd++ ){
-    		for(yd = 0; yd < 10 && y + yd < g.getRow(); yd++ ){
-    	    	g.plotPixel( x + xd, y + yd, R, G, B);
-    	    	g.plotPixel( x + xd, y + yd, 0, G, 0);
-
-    		}
-    	}
+        drawBlinky(g, 250, 250);
+        drawInky(g, 250, 750);
+        drawPinky(g, 750, 250);
+        drawClyde(g, 750, 750);
+    	drawPacman(g, x, y);
     	g.update();
-    	if(g.kbhit()){
-    	    g.getKey();
+    	g.Sleep(10);
+    	clearPacman(g, x, y);
+    	movePacman(x, y, dir);
+
+    	if(g.kbhit())
+        {
+    	    key = g.getKey();
+    	    switch(key)
+    	    {
+    	        case RIGHT_ARROW: dir = RIGHT; break;
+    	        case LEFT_ARROW: dir = LEFT; break;
+    	        case UP_ARROW: dir = UP; break;
+    	        case DOWN_ARROW: dir = DOWN; break;
+    	    }
     	}
     }
-}*/
+}
