@@ -16,10 +16,10 @@ int main(int argc, char ** argv)
 
     while (!g.getQuit())
     {
-        drawBlinky(g, 250, 250);
-        drawInky(g, 250, 750);
-        drawPinky(g, 750, 250);
-        drawClyde(g, 750, 750);
+        drawGhost(g, 250, 250, 210, 30, 10);
+        drawGhost(g, 250, 750, 0, 0, 220);
+        drawGhost(g, 750, 250, 180, 60, 100);
+        drawGhost(g, 750, 750, 140, 100, 0);
     	drawPacman(g, x, y);
     	g.update();
     	g.Sleep(10);

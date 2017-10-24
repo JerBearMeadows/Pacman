@@ -32,6 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="SDL_Plotter.h" />
+		<Unit filename="functions.cpp" />
+		<Unit filename="functions.h" />
+		<Unit filename="headers.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

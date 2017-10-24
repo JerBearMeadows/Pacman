@@ -14,16 +14,7 @@ void drawPacman(SDL_Plotter& g, int ul_x, int ul_y);
 void clearPacman(SDL_Plotter& g, int ul_x, int ul_y);
 void movePacman(int& ul_x, int& ul_y, int dir);
 
-void drawBlinky(SDL_Plotter& g, int ul_x, int ul_y);
-void clearBlinky(SDL_Plotter& g, int ul_x, int ul_y);
-
-void drawInky(SDL_Plotter& g, int ul_x, int ul_y);
-void clearInky(SDL_Plotter& g, int ul_x, int ul_y);
-
-void drawPinky(SDL_Plotter& g, int ul_x, int ul_y);
-void clearPinky(SDL_Plotter& g, int ul_x, int ul_y);
-
-void drawClyde(SDL_Plotter& g, int ul_x, int ul_y);
-void clearClyde(SDL_Plotter& g, int ul_x, int ul_y);
+void drawGhost(SDL_Plotter& g, int ul_x, int ul_y, int R, int G, int B);
+void clearGhost(SDL_Plotter& g, int ul_x, int ul_y);
 
 #endif // FUNCTIONS_H_INCLUDED
