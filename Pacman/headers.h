@@ -11,6 +11,7 @@
 #include <cmath>
 #include <ctime>
 #include <fstream>
+#include <ostream>
 
 using namespace std;
 
