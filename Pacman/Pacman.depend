@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1508869641 source:h:\pacman\pacman\functions.cpp
+1509490468 source:h:\pacman\pacman\functions.cpp
 	"functions.h"
 
-1508869631 h:\pacman\pacman\functions.h
-	"headers.h"
+1509492823 h:\pacman\pacman\functions.h
+	"SDL_Plotter.h"
 
-1508787306 h:\pacman\pacman\headers.h
+1509490468 h:\pacman\pacman\headers.h
 	"SDL_Plotter.h"
 	<iostream>
 	<iomanip>
@@ -14,13 +14,17 @@
 	<cmath>
 	<ctime>
 	<fstream>
+	<ostream>
 
-1508869674 source:h:\pacman\pacman\main.cpp
-	<iostream>
+1509493758 source:h:\pacman\pacman\main.cpp
 	"SDL_Plotter.h"
-	"functions.h"
+	"point.h"
+	"color.h"
+	"line.h"
+	"circle.h"
+	<iostream>
 
-1508786534 h:\pacman\pacman\sdl_plotter.h
+1509490468 h:\pacman\pacman\sdl_plotter.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_mixer.h>
 	<string.h>
@@ -59,4 +63,29 @@
 	<iostream>
 	"SDL_Plotter.h"
 	"functions.h"
+
+1509492960 h:\pacman\pacman\line.h
+	"SDL_Plotter.h"
+	"point.h"
+	"color.h"
+	<ostream>
+
+1509493054 h:\pacman\pacman\point.h
+	"SDL_Plotter.h"
+	"color.h"
+	<ostream>
+
+1509493030 source:h:\pacman\pacman\line.cpp
+	"line.h"
+
+1509493264 source:h:\pacman\pacman\circle.cpp
+	"circle.h"
+
+1509493265 h:\pacman\pacman\circle.h
+	"SDL_Plotter.h"
+	"point.h"
+	"color.h"
+	<cmath>
+
+1509492839 h:\pacman\pacman\color.h
 

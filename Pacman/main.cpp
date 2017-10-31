@@ -1,8 +1,9 @@
-#include <iostream>
-#include "line.h"
-#include "point.h"
 #include "SDL_Plotter.h"
-#include "functions.h"
+#include "point.h"
+#include "color.h"
+#include "line.h"
+#include "circle.h"
+#include <iostream>
 
 using namespace std;
 
@@ -13,30 +14,54 @@ int main(int argc, char ** argv)
     int R, G, B;
     int dir = 0;
     char key;
+    Point p;
     x = y = 500;
+
+    Circle pacman;
+
+
+    pacman.setCenter(Point(200, 200));
+    pacman.setRadius(75);
+    pacman.setColor(Color(200, 200, 20));
+    pacman.draw(g);
+    g.update();
 
     while (!g.getQuit())
     {
-        drawGhost(g, 250, 250, 210, 30, 10);
-        drawGhost(g, 250, 750, 0, 0, 220);
-        drawGhost(g, 750, 250, 180, 60, 100);
-        drawGhost(g, 750, 750, 140, 100, 0);
-    	drawPacman(g, x, y);
-    	g.update();
-    	g.Sleep(10);
-    	clearPacman(g, x, y);
-    	movePacman(x, y, dir);
-
     	if(g.kbhit())
         {
-    	    key = g.getKey();
-    	    switch(key)
+    	    switch(g.getKey())
     	    {
-    	        case RIGHT_ARROW: dir = RIGHT; break;
-    	        case LEFT_ARROW: dir = LEFT; break;
-    	        case UP_ARROW: dir = UP; break;
-    	        case DOWN_ARROW: dir = DOWN; break;
+    	        case RIGHT_ARROW: pacman.erase(g);
+                                  p = pacman.getCenter();
+                                  p.x += 10;
+                                  pacman.setCenter(p);
+                                  pacman.draw(g);
+                                  g.update();
+                                  break;
+    	        case LEFT_ARROW: pacman.erase(g);
+                                 p = pacman.getCenter();
+                                 p.x -= 10;
+                                 pacman.setCenter(p);
+                                 pacman.draw(g);
+                                 g.update();
+                                 break;
+    	        case UP_ARROW: pacman.erase(g);
+                               p = pacman.getCenter();
+                               p.y -= 10;
+                               pacman.setCenter(p);
+                               pacman.draw(g);
+                               g.update();
+                               break;
+    	        case DOWN_ARROW: pacman.erase(g);
+                                 p = pacman.getCenter();
+                                 p.y += 10;
+                                 pacman.setCenter(p);
+                                 pacman.draw(g);
+                                 g.update();
+                                 break;
     	    }
+
     	}
     }
 }

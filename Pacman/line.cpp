@@ -1,6 +1,4 @@
 #include "line.h"
-#include "point.h"
-#include "SDL_Plotter.h"
 
     Line::Line(){
         p1.x = 0;

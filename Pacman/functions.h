@@ -3,7 +3,7 @@
 
 //Stores all function prototypes
 
-#include "headers.h"
+#include "SDL_Plotter.h"
 
 const int RIGHT = 0;
 const int DOWN = 1;
