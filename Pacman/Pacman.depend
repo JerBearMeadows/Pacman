@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1508869641 source:h:\pacman\pacman\functions.cpp
+1509491834 source:h:\pacman\pacman\functions.cpp
 	"functions.h"
 
-1508869631 h:\pacman\pacman\functions.h
+1509490797 h:\pacman\pacman\functions.h
 	"headers.h"
 
-1508787306 h:\pacman\pacman\headers.h
+1509490797 h:\pacman\pacman\headers.h
 	"SDL_Plotter.h"
 	<iostream>
 	<iomanip>
@@ -14,13 +14,16 @@
 	<cmath>
 	<ctime>
 	<fstream>
+	<ostream>
 
-1508869674 source:h:\pacman\pacman\main.cpp
+1509490797 source:h:\pacman\pacman\main.cpp
 	<iostream>
+	"line.h"
+	"point.h"
 	"SDL_Plotter.h"
 	"functions.h"
 
-1508786534 h:\pacman\pacman\sdl_plotter.h
+1509490797 h:\pacman\pacman\sdl_plotter.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_mixer.h>
 	<string.h>
@@ -59,4 +62,13 @@
 	<iostream>
 	"SDL_Plotter.h"
 	"functions.h"
+
+1509490797 h:\pacman\pacman\line.h
+	<ostream>
+	"SDL_Plotter.h"
+	"point.h"
+
+1509490797 h:\pacman\pacman\point.h
+	<ostream>
+	"SDL_Plotter.h"
 
