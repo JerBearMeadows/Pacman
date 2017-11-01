@@ -1,12 +1,14 @@
 #ifndef POINT_H_INCLUDED
 #define POINT_H_INCLUDED
 
-#include <ostream>
 #include "SDL_Plotter.h"
+#include "color.h"
+#include <ostream>
+
 using namespace std;
 
-
-struct Point{
+struct Point
+{
     double x, y;
 
     Point(){
