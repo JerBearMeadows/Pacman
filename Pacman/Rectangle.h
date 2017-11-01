@@ -12,8 +12,8 @@ class Rectangle
         Color color;
 
     public:
-        void setupperLeft(const Point p1);
-        void setlowerRight(const Point p2);
+        void setupperLeft(const Point p);
+        void setlowerRight(const Point p);
         void setColor(const Color& c);
 
         Point getupperLeft() const;

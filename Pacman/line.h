@@ -4,9 +4,6 @@
 #include "SDL_Plotter.h"
 #include "color.h"
 #include "point.h"
-#include <ostream>
-
-using namespace std;
 
 class Line
 {

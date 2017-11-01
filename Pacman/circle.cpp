@@ -36,8 +36,8 @@ void Circle::erase(SDL_Plotter& g) const{
     for (int x = -radius; x <= radius; x++){
         for (int y = -radius; y <= radius; y++){
             if (sqrt((x * x) + (y * y)) <= radius){
-            g.plotPixel(x + center.x, y + center.y, 255, 255, 255);
-            g.plotPixel(x + center.x, -y + center.y, 255, 255, 255);
+            g.plotPixel(x + center.x, y + center.y, 0, 0, 0);
+            g.plotPixel(x + center.x, -y + center.y, 0, 0, 0);
             }
         }
     }
