@@ -1,22 +1,12 @@
 #include "Rectangle.h"
 #include "point.h"
 
-    Rectangle::Rectangle(){
-        upperLeft.x = 0;
-        upperLeft.y = 0;
-        lowerRight.x = 1;
-        lowerRight.y = 1;
-    }
-    Rectangle::Rectangle(Point point1, Point point2){
-        upperLeft = point1;
-        lowerRight = point2;
-    }
 
-    void Rectangle::setupperLeft(const Point& p){
-        upperLeft = p;
+    void Rectangle::setupperLeft(const Point p1){
+        upperLeft = p1;
     }
-    void Rectangle::setlowerRight(const Point& p){
-        lowerRight = p;
+    void Rectangle::setlowerRight(const Point p2){
+        lowerRight = p2;
     }
     void Rectangle::setColor(const Color& c){
         color = c;
@@ -32,9 +22,14 @@
         return color;
     }
 
-    void Rectangle::draw(ostream&) const{
+    void Rectangle::draw(SDL_Plotter& g) const{
+        for(int x = upperLeft.x; x <= lowerRight.x; x++){
+            for(int y = upperLeft.y; y <= lowerRight.y; y++){
+                g.plotPixel(x, y, color.R, color.G, color.B);
+
+            }
+            g.update();
+        }
 
     }
-    void Rectangle::draw(SDL_Plotter&) const{
 
-    }

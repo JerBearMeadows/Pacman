@@ -2,9 +2,10 @@
 #define RECTANGLE_H_INCLUDED
 
 #include "point.h"
+#include "SDL_Plotter.h"
+#include "color.h"
 
-//this is accessing the color still in line.h
-#include "line.h"
+
 class Rectangle{
     private:
         Point upperLeft, lowerRight;
@@ -12,18 +13,14 @@ class Rectangle{
 
     public:
 
-        Rectangle();
-        Rectangle(Point, Point);
-
-        void setupperLeft(const Point& p);
-        void setlowerRight(const Point& p);
+        void setupperLeft(const Point p1);
+        void setlowerRight(const Point p2);
         void setColor(const Color& c);
 
         Point getupperLeft() const;
         Point getlowerRight() const;
         Color getColor() const;
 
-        void draw(ostream&) const;
         void draw(SDL_Plotter&) const;
 
 };
