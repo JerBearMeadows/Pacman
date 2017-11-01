@@ -8,16 +8,15 @@
 class Line
 {
     private:
-        Point p1, p2;
+        Point point1, point2;
         Color color;
 
         bool slope(double& m) const;
         bool intercept(double& b) const;
 
     public:
-
-        Line();
         Line(Point, Point);
+        Line(Point, Point, Color);
 
         void setP1(const Point& p);
         void setP2(const Point& p);

@@ -4,6 +4,7 @@
 #include "SDL_Plotter.h"
 #include "color.h"
 #include "point.h"
+#include "line.h"
 
 class Triangle
 {
@@ -12,6 +13,9 @@ class Triangle
         Color color;
 
     public:
+        Triangle(Point v, Point p1, Point p2);
+        Triangle(Point v, Point p1, Point p2, Color c);
+
         void setVertex(const Point v);
         void setPoint1(const Point p);
         void setPoint2(const Point p);

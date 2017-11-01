@@ -12,6 +12,9 @@ class Rectangle
         Color color;
 
     public:
+        Rectangle(Point uL, Point lR);
+        Rectangle(Point uL, Point lR, Color c);
+
         void setupperLeft(const Point p);
         void setlowerRight(const Point p);
         void setColor(const Color& c);

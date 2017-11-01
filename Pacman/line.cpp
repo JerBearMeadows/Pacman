@@ -1,21 +1,20 @@
 #include "line.h"
 
-Line::Line(){
-    p1.x = 0;
-    p1.y = 0;
-    p2.x = 1;
-    p2.y = 1;
+Line::Line(Point p1, Point p2){
+    point1 = p1;
+    point2 = p2;
 }
-Line::Line(Point point1, Point point2){
-    p1 = point1;
-    p2 = point2;
+Line::Line(Point p1, Point p2, Color c){
+    point1 = p1;
+    point2 = p2;
+    color = c;
 }
 void Line::setP1(const Point& p){
-    p1 = p;
+    point1 = p;
 }
 
 void Line::setP2(const Point& p){
-    p2 = p;
+    point2 = p;
 }
 
 void Line::setColor(const Color& c){
@@ -30,10 +29,10 @@ Color Line::getColor() const{
 bool Line::slope(double& m) const{
     bool hasSlope;
 
-    hasSlope = (p1.x != p2.x);
+    hasSlope = (point1.x != point2.x);
 
     if(hasSlope){
-        m = (p1.y - p2.y) / (p1.x - p2.x);
+        m = (point1.y - point2.y) / (point1.x - point2.x);
     }
     return hasSlope;
 }
@@ -44,7 +43,7 @@ bool Line::intercept(double& b) const{
     hasIntercept = slope(m);
 
     if(hasIntercept){
-        b = p1.y - (m * p1.x);
+        b = point1.y - (m * point1.x);
     }
 
     return hasIntercept;
@@ -58,18 +57,18 @@ void Line::draw(SDL_Plotter& g) const{
 
     if(slope(m)){
         intercept(b);
-        if(p1.x < p2.x){
+        if(point1.x < point2.x){
 
-            for(double x = p1.x; x <= p2.x; x += delta){
+            for(double x = point1.x; x <= point2.x; x += delta){
                 y = m * x + b + 0.5;
-                g.plotPixel(x,y, color.R, color.G, color.B);
+                g.plotPixel(x, y, color.R, color.G, color.B);
             }
         }
         else{
 
-            for(double x = p1.x; x >= p2.x; x -= delta){
+            for(double x = point1.x; x >= point2.x; x -= delta){
                 y = m * x + b + 0.5;
-                g.plotPixel(x,y, color.R, color.G, color.B);
+                g.plotPixel(x, y, color.R, color.G, color.B);
             }
         }
     }

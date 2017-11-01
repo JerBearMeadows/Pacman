@@ -1,5 +1,15 @@
 #include "rectangle.h"
 
+Rectangle::Rectangle(Point uL, Point lR){
+    upperLeft = uL;
+    lowerRight = lR;
+}
+Rectangle::Rectangle(Point uL, Point lR, Color c){
+    upperLeft = uL;
+    lowerRight = lR;
+    color = c;
+}
+
 void Rectangle::setupperLeft(const Point p){
     upperLeft = p;
 }

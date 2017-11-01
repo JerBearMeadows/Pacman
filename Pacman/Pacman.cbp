@@ -33,10 +33,17 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="SDL_Plotter.h" />
-		<Unit filename="functions.cpp" />
-		<Unit filename="functions.h" />
-		<Unit filename="headers.h" />
+		<Unit filename="circle.cpp" />
+		<Unit filename="circle.h" />
+		<Unit filename="color.h" />
+		<Unit filename="line.cpp" />
+		<Unit filename="line.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="point.h" />
+		<Unit filename="rectangle.cpp" />
+		<Unit filename="rectangle.h" />
+		<Unit filename="triangle.cpp" />
+		<Unit filename="triangle.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

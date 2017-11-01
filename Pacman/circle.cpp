@@ -1,5 +1,16 @@
 #include "circle.h"
 
+
+Circle::Circle(double r, Point cent){
+    radius = r;
+    center = cent;
+}
+Circle::Circle(double r, Point cent, Color col){
+    radius = r;
+    center = cent;
+    color = col;
+}
+
 void Circle::setRadius(const double r){
     radius = r;
 }

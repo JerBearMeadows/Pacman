@@ -1,5 +1,17 @@
 #include "triangle.h"
 
+Triangle::Triangle(Point v, Point p1, Point p2){
+    vertex = v;
+    point1 = p1;
+    point2 = p2;
+}
+Triangle::Triangle(Point v, Point p1, Point p2, Color c){
+    vertex = v;
+    point1 = p1;
+    point2 = p2;
+    color = c;
+}
+
 void Triangle::setVertex(const Point v){
     vertex = v;
 }
@@ -27,9 +39,10 @@ Color Triangle::getColor() const{
 }
 
 void Triangle::draw(SDL_Plotter& g) const{
-    g.plotPixel(vertex.x, vertex.y, color.R, color.G, color.B);
-    g.plotPixel(point1.x, point1.y, color.R, color.G, color.B);
-    g.plotPixel(point2.x, point2.y, color.R, color.G, color.B);
+    Line line1(vertex, point1, Color());
+    Line line2(vertex, point2, Color());
+    line1.draw(g);
+    line2.draw(g);
 }
 void Triangle::erase(SDL_Plotter& g) const{
     g.plotPixel(vertex.x, vertex.y, 0, 0, 0);
