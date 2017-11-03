@@ -44,7 +44,7 @@
 		<Unit filename="rectangle.h" />
 		<Unit filename="triangle.cpp" />
 		<Unit filename="triangle.h" />
-		<Unit filename="walls.txt.txt" />
+		<Unit filename="walls.txt" />
 		<Extensions>
 			<code_completion />
 			<envvars />

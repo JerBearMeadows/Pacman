@@ -1,6 +1,9 @@
 #include "circle.h"
 
+Circle::Circle()
+{
 
+}
 Circle::Circle(double r, Point cent){
     radius = r;
     center = cent;

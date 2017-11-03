@@ -8,22 +8,21 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <cstdlib>
 
 using namespace std;
 
-const int WALLNUM = 52;
-const int DOTNUM = 203;
+const int WALLNUM = 53;
+const int DOTNUM = 200;
 
 int main(int argc, char** argv)
 {
     SDL_Plotter g(1001,1001);
     int dir = 0, eat = 1, count = 0;
-    int ulx, uly, lrx, lry;
-    ifstream walls;
+    int ulx, uly, lrx, lry, x, y;
+    ifstream walls, dots;
     string line;
-    Color wallColor = Color(0, 0, 255);
-    Color testColor = Color(255, 100, 100);
+    Color white = Color(255, 255, 255);
+    Color blue = Color(0, 0, 255);
 
     Rectangle background(Point(0, 0), Point(1000, 1000), Color());
     background.draw(g);
@@ -37,8 +36,22 @@ int main(int argc, char** argv)
         walls >> ulx >> uly >> lrx >> lry;
         wall[i].setupperLeft(Point(ulx, uly));
         wall[i].setlowerRight(Point(lrx, lry));
-        wall[i].setColor(wallColor);
+        wall[i].setColor(blue);
         wall[i].draw(g);
+    }
+
+    Circle dot[DOTNUM];
+    dots.open("dots.txt");
+    getline(dots, line);
+    for(int i = 0; i < DOTNUM; i++)
+    {
+        Circle dot[i];
+        dots >> x >> y;
+        dot[i].setCenter(Point(x, y));
+        dot[i].setRadius(10);
+        dot[i].setColor(white);
+        dot[i].draw(g);
+        g.update();
     }
 
     Circle pacman(25, Point (500, 565), Color(250, 250, 20));

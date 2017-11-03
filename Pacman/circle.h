@@ -16,6 +16,7 @@ class Circle
         Color color;
 
     public:
+        Circle();
         Circle(double r, Point cent);
         Circle(double r, Point cent, Color col);
 
