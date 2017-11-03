@@ -1,5 +1,8 @@
 #include "rectangle.h"
 
+Rectangle::Rectangle(){
+
+}
 Rectangle::Rectangle(Point uL, Point lR){
     upperLeft = uL;
     lowerRight = lR;

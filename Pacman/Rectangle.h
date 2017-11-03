@@ -12,6 +12,7 @@ class Rectangle
         Color color;
 
     public:
+        Rectangle();
         Rectangle(Point uL, Point lR);
         Rectangle(Point uL, Point lR, Color c);
 
