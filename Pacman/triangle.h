@@ -5,6 +5,7 @@
 #include "color.h"
 #include "point.h"
 #include "line.h"
+#include "circle.h"
 
 class Triangle
 {
@@ -13,6 +14,7 @@ class Triangle
         Color color;
 
     public:
+        Triangle();
         Triangle(Point v, Point p1, Point p2);
         Triangle(Point v, Point p1, Point p2, Color c);
 
@@ -27,6 +29,7 @@ class Triangle
         Color getColor() const;
 
         void draw(SDL_Plotter&) const;
+        void follow(Circle c, SDL_Plotter&);
         void erase(SDL_Plotter&) const;
 };
 

@@ -1,6 +1,10 @@
 #ifndef POINT_H_INCLUDED
 #define POINT_H_INCLUDED
 
+#include <cmath>
+
+using namespace std;
+
 struct Point
 {
     double x, y;
@@ -11,6 +15,9 @@ struct Point
     Point(double a, double b){
         x = a;
         y = b;
+    }
+    double distance(Point p){
+        return sqrt(pow(x - p.x, 2.0) + pow(y - p.y, 2.0));
     }
 };
 

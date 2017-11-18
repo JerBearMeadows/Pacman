@@ -39,6 +39,8 @@
 		<Unit filename="line.cpp" />
 		<Unit filename="line.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="maze.cpp" />
+		<Unit filename="maze.h" />
 		<Unit filename="point.h" />
 		<Unit filename="rectangle.cpp" />
 		<Unit filename="rectangle.h" />

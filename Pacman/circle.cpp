@@ -1,8 +1,7 @@
 #include "circle.h"
 
-Circle::Circle()
-{
-
+Circle::Circle(){
+    speed = 5;
 }
 Circle::Circle(double r, Point cent){
     radius = r;
@@ -23,6 +22,12 @@ void Circle::setCenter(const Point p){
 void Circle::setColor(const Color c){
     color = c;
 }
+void Circle::setSpeed(const int s){
+    speed = s;
+}
+void Circle::setDirection(DIRECTION d){
+    dir = d;
+}
 
 double Circle::getRadius() const{
     return radius;
@@ -32,6 +37,13 @@ Point Circle::getCenter() const{
 }
 Color Circle::getColor() const{
     return color;
+}
+
+int Circle::getSpeed() const{
+ return speed;
+}
+DIRECTION Circle::getDirection() const{
+    return dir;
 }
 
 void Circle::draw(SDL_Plotter& g) const{
@@ -45,6 +57,22 @@ void Circle::draw(SDL_Plotter& g) const{
         }
     }
 }
+void Circle::move(SDL_Plotter& g){
+    erase(g);
+
+    switch(dir)
+    {
+        case RIGHT: center.x+=speed;
+                    break;
+        case LEFT:  center.x-=speed;
+                    break;
+        case UP:    center.y-=speed;
+                    break;
+        case DOWN:  center.y+=speed;
+                    break;
+    }
+    draw(g);
+}
 void Circle::erase(SDL_Plotter& g) const{
     int y;
     for (int x = -radius; x <= radius; x++){
@@ -56,3 +84,22 @@ void Circle::erase(SDL_Plotter& g) const{
         }
     }
 }
+/*
+bool Circle::collision(Circle c) const{
+    bool flag = false;
+
+    for (int x = -radius; x <= radius && !flag; x++){
+        if(Point(x, upperLeft.y).distance(c.getCenter()) <= c.getRadius() ||
+           Point(x, lowerRight.y).distance(c.getCenter()) <= c.getRadius()){
+            flag = true;
+        }
+    }
+    for (int y = -radius; y <= radius && !flag; y++){
+        if(Point(upperLeft.x, y).distance(c.getCenter()) <= c.getRadius() ||
+           Point(lowerRight.x, y).distance(c.getCenter()) <= c.getRadius()){
+            flag = true;
+        }
+    }
+
+    return flag;
+}*/

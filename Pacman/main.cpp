@@ -8,6 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -17,11 +18,12 @@ const int DOTNUM = 200;
 int main(int argc, char** argv)
 {
     SDL_Plotter g(1001,1001);
-    int dir = 0, eat = 1, count = 0;
     int ulx, uly, lrx, lry, x, y;
+    int eat = 1, count = 0, score = 0;
     ifstream walls, dots;
     string line;
     Color white = Color(255, 255, 255);
+    Color yellow = Color(255, 255, 0);
     Color blue = Color(0, 0, 255);
 
     Rectangle background(Point(0, 0), Point(1000, 1000), Color());
@@ -32,13 +34,14 @@ int main(int argc, char** argv)
     getline(walls, line);
     for(int i = 0; i < WALLNUM; i++)
     {
-        Rectangle wall[i];
+        wall[i];
         walls >> ulx >> uly >> lrx >> lry;
-        wall[i].setupperLeft(Point(ulx, uly));
-        wall[i].setlowerRight(Point(lrx, lry));
+        wall[i].setUpperLeft(Point(ulx, uly));
+        wall[i].setLowerRight(Point(lrx, lry));
         wall[i].setColor(blue);
         wall[i].draw(g);
     }
+    g.update();
 
     Circle dot[DOTNUM];
     dots.open("dots.txt");
@@ -54,7 +57,8 @@ int main(int argc, char** argv)
         g.update();
     }
 
-    Circle pacman(25, Point (500, 565), Color(250, 250, 20));
+    Circle pacman(25, Point (500, 565), yellow);
+    pacman.setSpeed(2);
     Triangle mouth(pacman.getCenter(), Point(pacman.getCenter().x + 25, pacman.getCenter().y - 15), Point(pacman.getCenter().x + 25, pacman.getCenter().y + 15), Color(255, 255, 255));
     Point p;
     pacman.draw(g);
@@ -66,107 +70,27 @@ int main(int argc, char** argv)
         {
     	    switch(g.getKey())
     	    {
-    	        case RIGHT_ARROW:   dir = 1;
+    	        case RIGHT_ARROW:   pacman.setDirection(RIGHT);
                                     break;
-    	        case LEFT_ARROW:    dir = 2;
+    	        case LEFT_ARROW:    pacman.setDirection(LEFT);
                                     break;
-    	        case UP_ARROW:      dir = 3;
+    	        case UP_ARROW:      pacman.setDirection(UP);
                                     break;
-    	        case DOWN_ARROW:    dir = 4;
+    	        case DOWN_ARROW:    pacman.setDirection(DOWN);
                                     break;
     	    }
     	}
-    	switch (dir)
-    	{
-        case 1:   pacman.erase(g);
-                  p = pacman.getCenter();
-                  p.x += 1;
-                  pacman.setCenter(p);
-                  pacman.draw(g);
-                  break;
-        case 2:   pacman.erase(g);
-                  p = pacman.getCenter();
-                  p.x -= 1;
-                  pacman.setCenter(p);
-                  pacman.draw(g);
-                  break;
-        case 3:   pacman.erase(g);
-                  p = pacman.getCenter();
-                  p.y -= 1;
-                  pacman.setCenter(p);
-                  pacman.draw(g);
-                  break;
-        case 4:   pacman.erase(g);
-                  p = pacman.getCenter();
-                  p.y += 1;
-                  pacman.setCenter(p);
-                  pacman.draw(g);
-                  break;
-    	}
-    	if (eat > 0 && dir != 0)
+    	pacman.move(g);
+    	if (eat > 0 && pacman.getDirection() != STOP)
         {
             if (count == 25)
             {
-                switch (dir)
-                {
-                case 0:     mouth.erase(g);
-                case 1:     mouth.erase(g);
-                            mouth.setVertex(pacman.getCenter());
-                            mouth.setPoint1(Point(pacman.getCenter().x + 25, pacman.getCenter().y - 15));
-                            mouth.setPoint2(Point(pacman.getCenter().x + 25, pacman.getCenter().y + 15));
-                            mouth.draw(g);
-                            break;
-                case 2:     mouth.erase(g);
-                            mouth.setVertex(pacman.getCenter());
-                            mouth.setPoint1(Point(pacman.getCenter().x - 25, pacman.getCenter().y - 15));
-                            mouth.setPoint2(Point(pacman.getCenter().x - 25, pacman.getCenter().y + 15));
-                            mouth.draw(g);
-                            break;
-                case 3:     mouth.erase(g);
-                            mouth.setVertex(pacman.getCenter());
-                            mouth.setPoint1(Point(pacman.getCenter().x - 15, pacman.getCenter().y - 25));
-                            mouth.setPoint2(Point(pacman.getCenter().x + 15, pacman.getCenter().y - 25));
-                            mouth.draw(g);
-                            break;
-                case 4:     mouth.erase(g);
-                            mouth.setVertex(pacman.getCenter());
-                            mouth.setPoint1(Point(pacman.getCenter().x - 15, pacman.getCenter().y + 25));
-                            mouth.setPoint2(Point(pacman.getCenter().x + 15, pacman.getCenter().y + 25));
-                            mouth.draw(g);
-                            break;
-                }
+                mouth.follow(pacman, g);
                 eat *= -1;
                 count = 0;
             } else
             {
-                switch (dir)
-                {
-                case 0:     mouth.erase(g);
-                case 1:     mouth.erase(g);
-                            mouth.setVertex(pacman.getCenter());
-                            mouth.setPoint1(Point(pacman.getCenter().x + 25, pacman.getCenter().y - 15));
-                            mouth.setPoint2(Point(pacman.getCenter().x + 25, pacman.getCenter().y + 15));
-                            mouth.draw(g);
-                            break;
-                case 2:     mouth.erase(g);
-                            mouth.setVertex(pacman.getCenter());
-                            mouth.setPoint1(Point(pacman.getCenter().x - 25, pacman.getCenter().y - 15));
-                            mouth.setPoint2(Point(pacman.getCenter().x - 25, pacman.getCenter().y + 15));
-                            mouth.draw(g);
-                            break;
-                case 3:     mouth.erase(g);
-                            mouth.setVertex(pacman.getCenter());
-                            mouth.setPoint1(Point(pacman.getCenter().x - 15, pacman.getCenter().y - 25));
-                            mouth.setPoint2(Point(pacman.getCenter().x + 15, pacman.getCenter().y - 25));
-                            mouth.draw(g);
-                            break;
-                case 4:     mouth.erase(g);
-                            mouth.setVertex(pacman.getCenter());
-                            mouth.setPoint1(Point(pacman.getCenter().x - 15, pacman.getCenter().y + 25));
-                            mouth.setPoint2(Point(pacman.getCenter().x + 15, pacman.getCenter().y + 25));
-                            mouth.draw(g);
-                            break;
-                }
+                mouth.follow(pacman, g);
             }
             count++;
         } else
@@ -179,7 +103,37 @@ int main(int argc, char** argv)
             }
             count++;
         }
+
+        for (int i = 0; i < WALLNUM; i++)
+        {
+            if(wall[i].collision(pacman)){
+                pacman.erase(g);
+                switch (pacman.getDirection())
+                {
+                case RIGHT: pacman.setCenter(Point(pacman.getCenter().x - pacman.getSpeed(), pacman.getCenter().y));
+                            break;
+                case LEFT:  pacman.setCenter(Point(pacman.getCenter().x + pacman.getSpeed(), pacman.getCenter().y));
+                            break;
+                case UP:    pacman.setCenter(Point(pacman.getCenter().x, pacman.getCenter().y + pacman.getSpeed()));
+                            break;
+                case DOWN:  pacman.setCenter(Point(pacman.getCenter().x, pacman.getCenter().y - pacman.getSpeed()));
+                            break;
+                }
+                pacman.setDirection(STOP);
+                pacman.draw(g);
+            }
+            wall[i].draw(g);
+        }
+/*
+        for (int i = 0; i < DOTNUM; i++)
+        {
+            if(dot[i].collision(pacman)){
+                dot[i].erase(g);
+
+            }
+        }
+*/
         g.update();
-        g.Sleep(10);
+        g.Sleep(20);
     }
 }

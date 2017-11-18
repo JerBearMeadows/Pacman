@@ -4,6 +4,7 @@
 #include "SDL_Plotter.h"
 #include "color.h"
 #include "point.h"
+#include "circle.h"
 
 class Rectangle
 {
@@ -16,15 +17,18 @@ class Rectangle
         Rectangle(Point uL, Point lR);
         Rectangle(Point uL, Point lR, Color c);
 
-        void setupperLeft(const Point p);
-        void setlowerRight(const Point p);
+        void setUpperLeft(const Point p);
+        void setLowerRight(const Point p);
         void setColor(const Color& c);
 
-        Point getupperLeft() const;
-        Point getlowerRight() const;
+        Point getUpperLeft() const;
+        Point getLowerRight() const;
         Color getColor() const;
 
         void draw(SDL_Plotter&) const;
+        void erase(SDL_Plotter& g);
+
+        bool collision(Circle c) const;
 };
 
 #endif // RECTANGLE_H_INCLUDED
