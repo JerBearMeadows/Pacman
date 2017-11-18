@@ -30,6 +30,7 @@ class Rectangle
         void erase(SDL_Plotter& g);
 
         bool collision(Pacman) const;
+        bool collision(Ghost) const;
 };
 
 #endif // RECTANGLE_H_INCLUDED

@@ -136,7 +136,7 @@
 	"color.h"
 	"point.h"
 
-1511045398 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\main.cpp
+1511048505 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\main.cpp
 	"SDL_Plotter.h"
 	"color.h"
 	"point.h"
@@ -154,10 +154,10 @@
 1509499554 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\point.cpp
 	"point.h"
 
-1511041125 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\rectangle.cpp
+1511046344 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\rectangle.cpp
 	"rectangle.h"
 
-1511040248 c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\rectangle.h
+1511046510 c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\rectangle.h
 	"SDL_Plotter.h"
 	"color.h"
 	"point.h"
@@ -192,12 +192,13 @@
 1511045272 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\pacman.cpp
 	"pacman.h"
 
-1511042649 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\ghost.cpp
+1511048330 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\ghost.cpp
 	"ghost.h"
 
-1511042863 c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\ghost.h
+1511048330 c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\ghost.h
 	"SDL_Plotter.h"
 	"color.h"
 	"point.h"
 	"circle.h"
+	"cstdlib"
 

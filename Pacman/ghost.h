@@ -5,6 +5,9 @@
 #include "color.h"
 #include "point.h"
 #include "circle.h"
+#include "cstdlib"
+
+using namespace std;
 
 class Ghost
 {
@@ -33,6 +36,8 @@ class Ghost
 
         void draw(SDL_Plotter&) const;
         void move(SDL_Plotter&);
+        bool collision(Circle c) const;
+        void collide(SDL_Plotter&);
         void erase(SDL_Plotter&) const;
 };
 

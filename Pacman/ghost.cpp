@@ -2,7 +2,7 @@
 
 
 Ghost::Ghost(){
-    radius = 10;
+    radius = 20;
     center = Point(500, 465);
     color = red;
     speed = 2;
@@ -13,7 +13,7 @@ Ghost::Ghost(Circle c){
     center = c.getCenter();
     color = c.getColor();
     speed = 2;
-    dir = STOP;
+    dir = UP;
 }
 
 void Ghost::setRadius(const double r){
@@ -64,6 +64,43 @@ void Ghost::move(SDL_Plotter& g){
                     break;
         case DOWN:  center.y+=speed;
                     break;
+    }
+    draw(g);
+}
+bool Ghost::collision(Circle c) const{
+    bool flag = false;
+
+    if (sqrt(pow((c.getCenter().x - center.x), 2) + pow((c.getCenter().y - center.y), 2)) < (radius + (c.getRadius() / 2)))
+    {
+        flag = true;
+    }
+
+    return flag;
+}
+void Ghost::collide(SDL_Plotter& g){
+    erase(g);
+    switch (dir)
+    {
+    case RIGHT: setCenter(Point(getCenter().x - getSpeed(), getCenter().y));
+                while (dir == RIGHT){
+                dir = (DIRECTION)(rand() % 4 + 1);
+                }
+                break;
+    case LEFT:  setCenter(Point(getCenter().x + getSpeed(), getCenter().y));
+                while (dir == LEFT){
+                dir = (DIRECTION)(rand() % 4 + 1);
+                }
+                break;
+    case UP:    setCenter(Point(getCenter().x, getCenter().y + getSpeed()));
+                while (dir == UP){
+                dir = (DIRECTION)(rand() % 4 + 1);
+                }
+                break;
+    case DOWN:  setCenter(Point(getCenter().x, getCenter().y - getSpeed()));
+                while (dir == DOWN){
+                dir = (DIRECTION)(rand() % 4 + 1);
+                }
+                break;
     }
     draw(g);
 }

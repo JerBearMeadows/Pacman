@@ -54,13 +54,13 @@ int main(int argc, char** argv)
         g.update();
     }
 
-    Ghost blinky(Circle(15, Point(430, 465), red));
+    Ghost blinky(Circle(20, Point(430, 365), red));
     blinky.draw(g);
-    Ghost pinky(Circle(15, Point(477, 465), magenta));
+    Ghost pinky(Circle(20, Point(477, 365), magenta));
     pinky.draw(g);
-    Ghost inky(Circle(15, Point(524, 465), cyan));
+    Ghost inky(Circle(20, Point(524, 365), cyan));
     inky.draw(g);
-    Ghost clyde(Circle(15, Point(571, 465), orange));
+    Ghost clyde(Circle(20, Point(571, 365), orange));
     clyde.draw(g);
 
     Pacman pacman(Circle(25, Point (500, 565), yellow));
@@ -109,6 +109,10 @@ int main(int argc, char** argv)
             count++;
         }
 
+        blinky.move(g);
+        pinky.move(g);
+        inky.move(g);
+        clyde.move(g);
         for (int i = 0; i < WALLNUM; i++)
         {
             if(wall[i].collision(pacman)){
@@ -124,10 +128,26 @@ int main(int argc, char** argv)
                 case DOWN:  pacman.setCenter(Point(pacman.getCenter().x, pacman.getCenter().y - pacman.getSpeed()));
                             break;
                 }
+                wall[i].draw(g);
                 pacman.setDirection(STOP);
                 pacman.draw(g);
             }
-            wall[i].draw(g);
+            if(wall[i].collision(blinky)){
+                blinky.collide(g);
+                wall[i].draw(g);
+            }
+            if(wall[i].collision(pinky)){
+                pinky.collide(g);
+                wall[i].draw(g);
+            }
+            if(wall[i].collision(inky)){
+                inky.collide(g);
+                wall[i].draw(g);
+            }
+            if(wall[i].collision(clyde)){
+                clyde.collide(g);
+                wall[i].draw(g);
+            }
         }
 
         for (int i = 0; i < DOTNUM; i++)
@@ -140,8 +160,11 @@ int main(int argc, char** argv)
                 score += 10;
                 cout << score << endl;
             }
+            if(!dot[i].eaten)
+            {
+                dot[i].draw(g);
+            }
         }
-
         if(pacman.collision(blinky) || pacman.collision(pinky) || pacman.collision(inky) || pacman.collision(clyde))
         {
             gameOver = true;
@@ -156,7 +179,7 @@ int main(int argc, char** argv)
         }
 
         g.update();
-        g.Sleep(20);
+        g.Sleep(10);
     }
     if (win)
     {

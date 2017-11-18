@@ -53,13 +53,31 @@ bool Rectangle::collision(Pacman p) const{
     for(int x = upperLeft.x; x <= lowerRight.x && !flag; x++){
         if(Point(x, upperLeft.y).distance(p.getCenter()) <= p.getRadius() ||
            Point(x, lowerRight.y).distance(p.getCenter()) <= p.getRadius()){
-            flag = true;
+           flag = true;
         }
     }
     for(int y = upperLeft.y; y <= lowerRight.y && !flag; y++){
         if(Point(upperLeft.x, y).distance(p.getCenter()) <= p.getRadius() ||
            Point(lowerRight.x, y).distance(p.getCenter()) <= p.getRadius()){
-            flag = true;
+           flag = true;
+        }
+    }
+
+    return flag;
+}
+bool Rectangle::collision(Ghost g) const{
+    bool flag = false;
+
+    for(int x = upperLeft.x; x <= lowerRight.x && !flag; x++){
+        if(Point(x, upperLeft.y).distance(g.getCenter()) <= g.getRadius() ||
+           Point(x, lowerRight.y).distance(g.getCenter()) <= g.getRadius()){
+           flag = true;
+        }
+    }
+    for(int y = upperLeft.y; y <= lowerRight.y && !flag; y++){
+        if(Point(upperLeft.x, y).distance(g.getCenter()) <= g.getRadius() ||
+           Point(lowerRight.x, y).distance(g.getCenter()) <= g.getRadius()){
+           flag = true;
         }
     }
 
