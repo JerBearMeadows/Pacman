@@ -6,6 +6,7 @@
 #include "point.h"
 #include "line.h"
 #include "circle.h"
+#include "pacman.h"
 
 class Triangle
 {
@@ -29,7 +30,7 @@ class Triangle
         Color getColor() const;
 
         void draw(SDL_Plotter&) const;
-        void follow(Circle c, SDL_Plotter&);
+        void follow(Pacman, SDL_Plotter&);
         void erase(SDL_Plotter&) const;
 };
 

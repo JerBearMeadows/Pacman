@@ -5,6 +5,8 @@
 #include "rectangle.h"
 #include "triangle.h"
 #include "circle.h"
+#include "ghost.h"
+#include "pacman.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -20,11 +22,9 @@ int main(int argc, char** argv)
     SDL_Plotter g(1001,1001);
     int ulx, uly, lrx, lry, x, y;
     int eat = 1, count = 0, score = 0;
+    bool gameOver = false, win = false;
     ifstream walls, dots;
     string line;
-    Color white = Color(255, 255, 255);
-    Color yellow = Color(255, 255, 0);
-    Color blue = Color(0, 0, 255);
 
     Rectangle background(Point(0, 0), Point(1000, 1000), Color());
     background.draw(g);
@@ -38,7 +38,6 @@ int main(int argc, char** argv)
         walls >> ulx >> uly >> lrx >> lry;
         wall[i].setUpperLeft(Point(ulx, uly));
         wall[i].setLowerRight(Point(lrx, lry));
-        wall[i].setColor(blue);
         wall[i].draw(g);
     }
     g.update();
@@ -48,23 +47,29 @@ int main(int argc, char** argv)
     getline(dots, line);
     for(int i = 0; i < DOTNUM; i++)
     {
-        Circle dot[i];
+        dot[i];
         dots >> x >> y;
         dot[i].setCenter(Point(x, y));
-        dot[i].setRadius(10);
-        dot[i].setColor(white);
         dot[i].draw(g);
         g.update();
     }
 
-    Circle pacman(25, Point (500, 565), yellow);
-    pacman.setSpeed(2);
+    Ghost blinky(Circle(15, Point(430, 465), red));
+    blinky.draw(g);
+    Ghost pinky(Circle(15, Point(477, 465), magenta));
+    pinky.draw(g);
+    Ghost inky(Circle(15, Point(524, 465), cyan));
+    inky.draw(g);
+    Ghost clyde(Circle(15, Point(571, 465), orange));
+    clyde.draw(g);
+
+    Pacman pacman(Circle(25, Point (500, 565), yellow));
     Triangle mouth(pacman.getCenter(), Point(pacman.getCenter().x + 25, pacman.getCenter().y - 15), Point(pacman.getCenter().x + 25, pacman.getCenter().y + 15), Color(255, 255, 255));
     Point p;
     pacman.draw(g);
     g.update();
 
-    while (!g.getQuit())
+    while (!g.getQuit() && !gameOver)
     {
     	if(g.kbhit())
         {
@@ -124,16 +129,46 @@ int main(int argc, char** argv)
             }
             wall[i].draw(g);
         }
-/*
+
         for (int i = 0; i < DOTNUM; i++)
         {
-            if(dot[i].collision(pacman)){
+            if(pacman.collision(dot[i]) && !dot[i].eaten)
+            {
                 dot[i].erase(g);
-
+                dot[i].eaten = true;
+                pacman.draw(g);
+                score += 10;
+                cout << score << endl;
             }
         }
-*/
+
+        if(pacman.collision(blinky) || pacman.collision(pinky) || pacman.collision(inky) || pacman.collision(clyde))
+        {
+            gameOver = true;
+            g.Sleep(500);
+        }
+
+        if (score == 2000)
+        {
+            gameOver = true;
+            win = true;
+            g.Sleep(500);
+        }
+
         g.update();
         g.Sleep(20);
     }
+    if (win)
+    {
+        Rectangle gameWin(Point(0, 0), Point(1000, 1000), white);
+        gameWin.draw(g);
+        cout << "YOU WIN!" << endl;
+    }
+    else
+    {
+        Rectangle gameWin(Point(0, 0), Point(1000, 1000), white);
+        gameWin.draw(g);
+        cout << "YOU LOST!" << endl;
+    }
+
 }

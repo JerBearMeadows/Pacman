@@ -5,6 +5,7 @@
 #include "color.h"
 #include "point.h"
 #include "circle.h"
+#include "pacman.h"
 
 class Rectangle
 {
@@ -28,7 +29,7 @@ class Rectangle
         void draw(SDL_Plotter&) const;
         void erase(SDL_Plotter& g);
 
-        bool collision(Circle c) const;
+        bool collision(Pacman) const;
 };
 
 #endif // RECTANGLE_H_INCLUDED

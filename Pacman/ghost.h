@@ -1,38 +1,39 @@
-#ifndef CIRCLE_H_INCLUDED
-#define CIRCLE_H_INCLUDED
+#ifndef GHOST_H_INCLUDED
+#define GHOST_H_INCLUDED
 
 #include "SDL_Plotter.h"
 #include "color.h"
 #include "point.h"
-#include <cmath>
+#include "circle.h"
 
-enum DIRECTION {STOP, RIGHT, LEFT, UP, DOWN};
-
-using namespace std;
-
-class Circle
+class Ghost
 {
     private:
         double radius;
         Point center;
         Color color;
+        int speed;
+        DIRECTION dir = STOP;
 
     public:
-        Circle();
-        Circle(double r, Point cent);
-        Circle(double r, Point cent, Color col);
-        bool eaten;
+        Ghost();
+        Ghost(Circle);
 
         void setRadius(const double r);
         void setCenter(const Point p);
         void setColor(const Color c);
+        void setSpeed(const int s);
+        void setDirection(DIRECTION d);
 
         double getRadius() const;
         Point getCenter() const;
         Color getColor() const;
+        int getSpeed() const;
+        DIRECTION getDirection() const;
 
         void draw(SDL_Plotter&) const;
+        void move(SDL_Plotter&);
         void erase(SDL_Plotter&) const;
 };
 
-#endif // CIRCLE_H_INCLUDED
+#endif // GHOST_H_INCLUDED

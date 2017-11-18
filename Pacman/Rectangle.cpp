@@ -1,6 +1,7 @@
 #include "rectangle.h"
 
 Rectangle::Rectangle(){
+    color = blue;
 }
 Rectangle::Rectangle(Point uL, Point lR){
     upperLeft = uL;
@@ -41,23 +42,23 @@ void Rectangle::draw(SDL_Plotter& g) const{
 }
 void Rectangle::erase(SDL_Plotter& g){
     Color tmp = getColor();
-    setColor(Color(0,0,0));
+    setColor(black);
     draw(g);
     setColor(tmp);
 }
 
-bool Rectangle::collision(Circle c) const{
+bool Rectangle::collision(Pacman p) const{
     bool flag = false;
 
     for(int x = upperLeft.x; x <= lowerRight.x && !flag; x++){
-        if(Point(x, upperLeft.y).distance(c.getCenter()) <= c.getRadius() ||
-           Point(x, lowerRight.y).distance(c.getCenter()) <= c.getRadius()){
+        if(Point(x, upperLeft.y).distance(p.getCenter()) <= p.getRadius() ||
+           Point(x, lowerRight.y).distance(p.getCenter()) <= p.getRadius()){
             flag = true;
         }
     }
     for(int y = upperLeft.y; y <= lowerRight.y && !flag; y++){
-        if(Point(upperLeft.x, y).distance(c.getCenter()) <= c.getRadius() ||
-           Point(lowerRight.x, y).distance(c.getCenter()) <= c.getRadius()){
+        if(Point(upperLeft.x, y).distance(p.getCenter()) <= p.getRadius() ||
+           Point(lowerRight.x, y).distance(p.getCenter()) <= p.getRadius()){
             flag = true;
         }
     }

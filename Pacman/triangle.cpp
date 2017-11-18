@@ -46,32 +46,32 @@ void Triangle::draw(SDL_Plotter& g) const{
     line1.draw(g);
     line2.draw(g);
 }
-void Triangle::follow(Circle c, SDL_Plotter& g){
-    switch (c.getDirection())
+void Triangle::follow(Pacman p, SDL_Plotter& g){
+    switch (p.getDirection())
     {
     case STOP:  erase(g);
     case RIGHT: erase(g);
-                setVertex(c.getCenter());
-                setPoint1(Point(c.getCenter().x + 25, c.getCenter().y - 15));
-                setPoint2(Point(c.getCenter().x + 25, c.getCenter().y + 15));
+                setVertex(p.getCenter());
+                setPoint1(Point(p.getCenter().x + 25, p.getCenter().y - 15));
+                setPoint2(Point(p.getCenter().x + 25, p.getCenter().y + 15));
                 draw(g);
                 break;
     case LEFT:  erase(g);
-                setVertex(c.getCenter());
-                setPoint1(Point(c.getCenter().x - 25, c.getCenter().y - 15));
-                setPoint2(Point(c.getCenter().x - 25, c.getCenter().y + 15));
+                setVertex(p.getCenter());
+                setPoint1(Point(p.getCenter().x - 25, p.getCenter().y - 15));
+                setPoint2(Point(p.getCenter().x - 25, p.getCenter().y + 15));
                 draw(g);
                 break;
     case UP:    erase(g);
-                setVertex(c.getCenter());
-                setPoint1(Point(c.getCenter().x - 15, c.getCenter().y - 25));
-                setPoint2(Point(c.getCenter().x + 15, c.getCenter().y - 25));
+                setVertex(p.getCenter());
+                setPoint1(Point(p.getCenter().x - 15, p.getCenter().y - 25));
+                setPoint2(Point(p.getCenter().x + 15, p.getCenter().y - 25));
                 draw(g);
                 break;
     case DOWN:  erase(g);
-                setVertex(c.getCenter());
-                setPoint1(Point(c.getCenter().x - 15, c.getCenter().y + 25));
-                setPoint2(Point(c.getCenter().x + 15, c.getCenter().y + 25));
+                setVertex(p.getCenter());
+                setPoint1(Point(p.getCenter().x - 15, p.getCenter().y + 25));
+                setPoint2(Point(p.getCenter().x + 15, p.getCenter().y + 25));
                 draw(g);
                 break;
     }
