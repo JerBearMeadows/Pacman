@@ -54,36 +54,6 @@ void Triangle::draw(SDL_Plotter& g) const{
         }
     }
 }
-void Triangle::follow(Pacman p, SDL_Plotter& g){
-    switch (p.getDirection())
-    {
-    case STOP:  erase(g);
-    case RIGHT: erase(g);
-                setPoint1(p.getCenter());
-                setPoint2(Point(p.getCenter().x + 25, p.getCenter().y - 15));
-                setPoint3(Point(p.getCenter().x + 25, p.getCenter().y + 15));
-                draw(g);
-                break;
-    case LEFT:  p.draw(g);
-                setPoint1(p.getCenter());
-                setPoint2(Point(p.getCenter().x - 25, p.getCenter().y - 15));
-                setPoint3(Point(p.getCenter().x - 25, p.getCenter().y + 15));
-                draw(g);
-                break;
-    case UP:    erase(g);
-                setPoint1(p.getCenter());
-                setPoint2(Point(p.getCenter().x - 15, p.getCenter().y - 25));
-                setPoint3(Point(p.getCenter().x + 15, p.getCenter().y - 25));
-                draw(g);
-                break;
-    case DOWN:  erase(g);
-                setPoint1(p.getCenter());
-                setPoint2(Point(p.getCenter().x - 15, p.getCenter().y + 25));
-                setPoint3(Point(p.getCenter().x + 15, p.getCenter().y + 25));
-                draw(g);
-                break;
-    }
-}
 void Triangle::erase(SDL_Plotter& g) const{
     for(int x =  min(min(point1.x, point2.x), point3.x); x <= max(max(point1.x, point2.x), point3.x); x++)
     {

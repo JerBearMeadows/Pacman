@@ -136,7 +136,7 @@
 	"color.h"
 	"point.h"
 
-1511196975 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\main.cpp
+1511233013 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\main.cpp
 	"SDL_Plotter.h"
 	"color.h"
 	"point.h"
@@ -144,6 +144,7 @@
 	"rectangle.h"
 	"triangle.h"
 	"circle.h"
+	"mouth.h"
 	"ghost.h"
 	"pacman.h"
 	<iostream>
@@ -165,15 +166,13 @@
 	"circle.h"
 	"pacman.h"
 
-1511065276 c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\triangle.h
+1511232934 c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\triangle.h
 	"SDL_Plotter.h"
 	"color.h"
 	"point.h"
 	"line.h"
-	"circle.h"
-	"pacman.h"
 
-1511195534 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\triangle.cpp
+1511232934 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\triangle.cpp
 	"triangle.h"
 
 1510699777 c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\maze.h
@@ -190,7 +189,7 @@
 	"circle.h"
 	"ghost.h"
 
-1511045272 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\pacman.cpp
+1511228164 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\pacman.cpp
 	"pacman.h"
 
 1511048330 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\ghost.cpp
@@ -202,4 +201,24 @@
 	"point.h"
 	"circle.h"
 	"cstdlib"
+
+1511232737 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\font.cpp
+	"font.h"
+
+1511232759 c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\font.h
+	"SDL_Plotter.h"
+	"point.h"
+	<fstream>
+	<cstdlib>
+
+1511232934 c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\mouth.h
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+	"line.h"
+	"circle.h"
+	"pacman.h"
+
+1511232983 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\mouth.cpp
+	"mouth.h"
 

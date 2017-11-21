@@ -5,6 +5,7 @@
 #include "rectangle.h"
 #include "triangle.h"
 #include "circle.h"
+#include "mouth.h"
 #include "ghost.h"
 #include "pacman.h"
 #include <iostream>
@@ -23,7 +24,7 @@ int main(int argc, char** argv)
     SDL_Plotter g(1001,1001);
     int ulx, uly, lrx, lry, x, y, power[4];
     int eat = 1, count = 0, score = 0;
-    bool gameOver = false, win = false;
+    bool powerUp = false, gameOver = false, win = false;
     ifstream walls, dots;
     string line;
 
@@ -75,7 +76,7 @@ int main(int argc, char** argv)
     clyde.draw(g);
 
     Pacman pacman(Circle(25, Point (500, 565), yellow));
-    Triangle mouth(pacman.getCenter(), Point(pacman.getCenter().x + 25, pacman.getCenter().y - 15), Point(pacman.getCenter().x + 25, pacman.getCenter().y + 15), Color(255, 255, 255));
+    Mouth mouth(pacman.getCenter(), Point(pacman.getCenter().x + 25, pacman.getCenter().y - 15), Point(pacman.getCenter().x + 25, pacman.getCenter().y + 15), Color(255, 255, 255));
     Point p;
     pacman.draw(g);
     g.update();
@@ -167,7 +168,14 @@ int main(int argc, char** argv)
                 dot[i].erase(g);
                 dot[i].eaten = true;
                 pacman.draw(g);
-                score += 10;
+                if (i == power[0] || i == power[1] || i == power[2] || i == power[3])
+                {
+                    score += 135;
+                    bool powerUp = true;
+                } else
+                {
+                    score += 10;
+                }
                 cout << score << endl;
             }
             if(!dot[i].eaten)
@@ -181,7 +189,7 @@ int main(int argc, char** argv)
             g.Sleep(500);
         }
 
-        if(score == 2000)
+        if(score == 2500)
         {
             gameOver = true;
             win = true;
