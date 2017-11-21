@@ -11,22 +11,22 @@
 class Triangle
 {
     private:
-        Point vertex, point1, point2;
+        Point point1, point2, point3;
         Color color;
 
     public:
         Triangle();
-        Triangle(Point v, Point p1, Point p2);
-        Triangle(Point v, Point p1, Point p2, Color c);
+        Triangle(Point p1, Point p2, Point p3);
+        Triangle(Point p1, Point p2, Point p3, Color c);
 
-        void setVertex(const Point v);
-        void setPoint1(const Point p);
-        void setPoint2(const Point p);
-        void setColor(const Color& c);
+        void setPoint1(const Point);
+        void setPoint2(const Point);
+        void setPoint3(const Point);
+        void setColor(const Color&);
 
-        Point getVertex() const;
         Point getPoint1() const;
         Point getPoint2() const;
+        Point getPoint3() const;
         Color getColor() const;
 
         void draw(SDL_Plotter&) const;

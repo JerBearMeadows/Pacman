@@ -10,6 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdlib>
 #include <ctime>
 
 using namespace std;
@@ -20,7 +21,7 @@ const int DOTNUM = 200;
 int main(int argc, char** argv)
 {
     SDL_Plotter g(1001,1001);
-    int ulx, uly, lrx, lry, x, y;
+    int ulx, uly, lrx, lry, x, y, power[4];
     int eat = 1, count = 0, score = 0;
     bool gameOver = false, win = false;
     ifstream walls, dots;
@@ -45,11 +46,21 @@ int main(int argc, char** argv)
     Circle dot[DOTNUM];
     dots.open("dots.txt");
     getline(dots, line);
+    srand(time(NULL));
+    for(int i = 0; i < 4; i++)
+    {
+        power[i] = rand() % 200;
+    }
     for(int i = 0; i < DOTNUM; i++)
     {
         dot[i];
         dots >> x >> y;
         dot[i].setCenter(Point(x, y));
+        if (i == power[0] || i == power[1] || i == power[2] || i == power[3])
+        {
+            dot[i].setColor(green);
+            dot[i].setRadius(15);
+        }
         dot[i].draw(g);
         g.update();
     }
@@ -102,7 +113,6 @@ int main(int argc, char** argv)
         {
             if (count == 25)
             {
-                mouth.erase(g);
                 eat *= -1;
                 count = 0;
             }
@@ -171,11 +181,10 @@ int main(int argc, char** argv)
             g.Sleep(500);
         }
 
-        if (score == 2000)
+        if(score == 2000)
         {
             gameOver = true;
             win = true;
-            g.Sleep(500);
         }
 
         g.update();

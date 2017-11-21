@@ -69,14 +69,14 @@ bool Rectangle::collision(Ghost g) const{
     bool flag = false;
 
     for(int x = upperLeft.x; x <= lowerRight.x && !flag; x++){
-        if(Point(x, upperLeft.y).distance(g.getCenter()) <= g.getRadius() ||
-           Point(x, lowerRight.y).distance(g.getCenter()) <= g.getRadius()){
+        if(Point(x, upperLeft.y).distance(g.getCenter()) <= g.getRadius() + 10 ||
+           Point(x, lowerRight.y).distance(g.getCenter()) <= g.getRadius() + 10){
            flag = true;
         }
     }
     for(int y = upperLeft.y; y <= lowerRight.y && !flag; y++){
-        if(Point(upperLeft.x, y).distance(g.getCenter()) <= g.getRadius() ||
-           Point(lowerRight.x, y).distance(g.getCenter()) <= g.getRadius()){
+        if(Point(upperLeft.x, y).distance(g.getCenter()) <= g.getRadius() + 10 ||
+           Point(lowerRight.x, y).distance(g.getCenter()) <= g.getRadius() + 10){
            flag = true;
         }
     }
