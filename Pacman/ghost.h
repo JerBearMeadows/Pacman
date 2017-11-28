@@ -21,6 +21,7 @@ class Ghost
     public:
         Ghost();
         Ghost(Circle);
+        bool dead;
 
         void setRadius(const double r);
         void setCenter(const Point p);
@@ -40,5 +41,7 @@ class Ghost
         void collide(SDL_Plotter&);
         void erase(SDL_Plotter&) const;
 };
+
+void blinkyStart(SDL_Plotter&);
 
 #endif // GHOST_H_INCLUDED

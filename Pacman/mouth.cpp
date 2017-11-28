@@ -57,26 +57,26 @@ void Mouth::draw(SDL_Plotter& g) const{
 void Mouth::follow(Pacman p, SDL_Plotter& g){
     switch (p.getDirection())
     {
-    case STOP:  erase(g);
-    case RIGHT: erase(g);
+    case STOP:  erase(g, p);
+    case RIGHT: erase(g, p);
                 setPoint1(p.getCenter());
                 setPoint2(Point(p.getCenter().x + 25, p.getCenter().y - 15));
                 setPoint3(Point(p.getCenter().x + 25, p.getCenter().y + 15));
                 draw(g);
                 break;
-    case LEFT:  p.draw(g);
+    case LEFT:  erase(g, p);
                 setPoint1(p.getCenter());
                 setPoint2(Point(p.getCenter().x - 25, p.getCenter().y - 15));
                 setPoint3(Point(p.getCenter().x - 25, p.getCenter().y + 15));
                 draw(g);
                 break;
-    case UP:    erase(g);
+    case UP:    erase(g, p);
                 setPoint1(p.getCenter());
                 setPoint2(Point(p.getCenter().x - 15, p.getCenter().y - 25));
                 setPoint3(Point(p.getCenter().x + 15, p.getCenter().y - 25));
                 draw(g);
                 break;
-    case DOWN:  erase(g);
+    case DOWN:  erase(g, p);
                 setPoint1(p.getCenter());
                 setPoint2(Point(p.getCenter().x - 15, p.getCenter().y + 25));
                 setPoint3(Point(p.getCenter().x + 15, p.getCenter().y + 25));
@@ -84,7 +84,7 @@ void Mouth::follow(Pacman p, SDL_Plotter& g){
                 break;
     }
 }
-void Mouth::erase(SDL_Plotter& g) const{
+void Mouth::erase(SDL_Plotter& g, Pacman& p) const{
     for(int x =  min(min(point1.x, point2.x), point3.x); x <= max(max(point1.x, point2.x), point3.x); x++)
     {
         for(int y = min(min(point1.y, point2.y), point3.y); y <= max(max(point1.y, point2.y), point3.y); y++)
@@ -97,4 +97,5 @@ void Mouth::erase(SDL_Plotter& g) const{
             }
         }
     }
+    p.draw(g);
 }

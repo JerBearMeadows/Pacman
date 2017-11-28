@@ -16,14 +16,20 @@
 	<fstream>
 	<ostream>
 
-1509044630 D
+1509572172 D
+	"circle.h"
+	"pacman.h"
 
 1509493758 source:h:\pacman\pacman\main.cpp
 	<iostream>
 	"line.h"
 	"point.h"
 
-1509490797 
+1509572172 
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+	"line.h"
 
 1509492839 gin/main/circle_class
 	"SDL_Plotter.h"
@@ -212,6 +218,87 @@
 	<cstdlib>
 
 1511232934 c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\mouth.h
+
+1511278147 source:c:\users\jerem\documents\codeblocks\pacman\circle.cpp
+	"circle.h"
+
+1511278147 c:\users\jerem\documents\codeblocks\pacman\circle.h
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+	<cmath>
+
+1509568572 source:c:\users\jerem\documents\codeblocks\pacman\line.cpp
+	"line.h"
+
+1509568572 c:\users\jerem\documents\codeblocks\pacman\line.h
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+
+1511830242 source:c:\users\jerem\documents\codeblocks\pacman\main.cpp
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+	"line.h"
+	"rectangle.h"
+	"triangle.h"
+	"circle.h"
+	"mouth.h"
+	"ghost.h"
+	"pacman.h"
+	"font.h"
+	<iostream>
+	<fstream>
+	<string>
+	<cstdlib>
+	<ctime>
+
+1511278147 c:\users\jerem\documents\codeblocks\pacman\rectangle.h
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+	"circle.h"
+	"pacman.h"
+
+1511278147 c:\users\jerem\documents\codeblocks\pacman\triangle.h
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+	"line.h"
+
+1511232983 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\mouth.cpp
+	"mouth.h"
+
+1511378185 source:c:\users\jerem\documents\codeblocks\pacman\rectangle.cpp
+	"rectangle.h"
+
+1511278147 source:c:\users\jerem\documents\codeblocks\pacman\triangle.cpp
+	"triangle.h"
+
+1511378185 c:\users\jerem\documents\codeblocks\pacman\color.h
+
+1511278147 c:\users\jerem\documents\codeblocks\pacman\point.h
+	<cmath>
+
+1511539638 source:c:\users\jerem\documents\codeblocks\pacman\ghost.cpp
+	"ghost.h"
+
+1511828195 c:\users\jerem\documents\codeblocks\pacman\ghost.h
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+	"circle.h"
+	"cstdlib"
+
+1511278147 c:\users\jerem\documents\codeblocks\pacman\pacman.h
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+	"circle.h"
+	"ghost.h"
+
+1511830387 c:\users\jerem\documents\codeblocks\pacman\mouth.h
 	"SDL_Plotter.h"
 	"color.h"
 	"point.h"
@@ -219,6 +306,27 @@
 	"circle.h"
 	"pacman.h"
 
-1511232983 source:c:\users\jeremy meadows\documents\codeblocks\pacman\pacman\mouth.cpp
+1511278147 source:c:\users\jerem\documents\codeblocks\pacman\pacman.cpp
+	"pacman.h"
+
+1511365841 c:\users\jerem\documents\codeblocks\pacman\sdl_plotter.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_mixer.h>
+	<string.h>
+	<iostream>
+	<string>
+	<string.h>
+	<map>
+
+1511830387 source:c:\users\jerem\documents\codeblocks\pacman\mouth.cpp
 	"mouth.h"
+
+1511827251 source:c:\users\jerem\documents\codeblocks\pacman\font.cpp
+	"font.h"
+
+1511826242 c:\users\jerem\documents\codeblocks\pacman\font.h
+	"SDL_Plotter.h"
+	"point.h"
+	<fstream>
+	<cstdlib>
 

@@ -31,7 +31,7 @@ class Mouth
 
         void draw(SDL_Plotter&) const;
         void follow(Pacman, SDL_Plotter&);
-        void erase(SDL_Plotter&) const;
+        void erase(SDL_Plotter&, Pacman&) const;
 };
 
 #endif // MOUTH_H_INCLUDED

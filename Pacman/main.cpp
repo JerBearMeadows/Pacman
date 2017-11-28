@@ -8,6 +8,7 @@
 #include "mouth.h"
 #include "ghost.h"
 #include "pacman.h"
+#include "font.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -24,12 +25,27 @@ int main(int argc, char** argv)
     SDL_Plotter g(1001,1001);
     int ulx, uly, lrx, lry, x, y, power[4];
     int eat = 1, count = 0, score = 0;
+    int row, col;
     bool powerUp = false, gameOver = false, win = false;
+    time_t start, stop;
     ifstream walls, dots;
     string line;
+    ifstream S, C, O, R, E;
+    char letterS[12][10], letterC[12][10], letterO[12][10], letterR[12][10], letterE[12][10];
+
+    S.open("S.txt");
+        S >> row >> col;
+        for(int r = 0; r < row ; r ++){
+            for(int c = 0 ; c < col; c ++){
+                S >> letterS[r][c];
+            }
+        }
 
     Rectangle background(Point(0, 0), Point(1000, 1000), Color());
     background.draw(g);
+
+    g.update();
+    S.close();
 
     Rectangle wall[WALLNUM];
     walls.open("walls.txt");
@@ -76,6 +92,7 @@ int main(int argc, char** argv)
     clyde.draw(g);
 
     Pacman pacman(Circle(25, Point (500, 565), yellow));
+    pacman.setSpeed(4);
     Mouth mouth(pacman.getCenter(), Point(pacman.getCenter().x + 25, pacman.getCenter().y - 15), Point(pacman.getCenter().x + 25, pacman.getCenter().y + 15), Color(255, 255, 255));
     Point p;
     pacman.draw(g);
@@ -96,11 +113,20 @@ int main(int argc, char** argv)
     	        case DOWN_ARROW:    pacman.setDirection(DOWN);
                                     break;
     	    }
+    	    switch(g.getKey())
+                {
+                case 'S':
+                    plotLetter(letterS, row, col, Point(rand()%800+100,rand()%800+100),g,4);
+                    g.update();
+                    break;
+                }
     	}
+
     	pacman.move(g);
+
     	if (eat > 0 && pacman.getDirection() != STOP)
         {
-            if (count == 25)
+            if (count == 5)
             {
                 mouth.follow(pacman, g);
                 eat *= -1;
@@ -112,22 +138,34 @@ int main(int argc, char** argv)
             count++;
         } else
         {
-            if (count == 25)
+            if (count == 5)
             {
                 eat *= -1;
                 count = 0;
             }
             count++;
         }
-
-        blinky.move(g);
-        pinky.move(g);
-        inky.move(g);
-        clyde.move(g);
+        if (!blinky.dead)
+        {
+            blinky.move(g);
+        }
+        if (!pinky.dead)
+        {
+            pinky.move(g);
+        }
+        if (!inky.dead)
+        {
+            inky.move(g);
+        }
+        if (!clyde.dead)
+        {
+            clyde.move(g);
+        }
         for (int i = 0; i < WALLNUM; i++)
         {
-            if(wall[i].collision(pacman)){
+            if(wall[i].collision(pacman) && (!powerUp || i < 4)){
                 pacman.erase(g);
+                //cout << i << endl;
                 switch (pacman.getDirection())
                 {
                 case RIGHT: pacman.setCenter(Point(pacman.getCenter().x - pacman.getSpeed(), pacman.getCenter().y));
@@ -142,6 +180,22 @@ int main(int argc, char** argv)
                 wall[i].draw(g);
                 pacman.setDirection(STOP);
                 pacman.draw(g);
+            }
+            else if(powerUp){
+                pacman.setColor(white);
+                if(wall[i].collision(pacman))
+                {
+                    wall[i].draw(g);
+                    pacman.draw(g);
+                }
+                if(stop <= time(NULL))
+                {
+                    if(!wall[i].collision(pacman))
+                    {
+                        pacman.setColor(yellow);
+                        powerUp = false;
+                    }
+                }
             }
             if(wall[i].collision(blinky)){
                 blinky.collide(g);
@@ -168,35 +222,78 @@ int main(int argc, char** argv)
                 dot[i].erase(g);
                 dot[i].eaten = true;
                 pacman.draw(g);
-                if (i == power[0] || i == power[1] || i == power[2] || i == power[3])
-                {
+                if (i == power[0] || i == power[1] || i == power[2] || i == power[3]){
                     score += 135;
-                    bool powerUp = true;
-                } else
-                {
+                    powerUp = true;
+                    start = time(NULL);
+                    stop = start + 7;
+                } else{
                     score += 10;
                 }
                 cout << score << endl;
             }
-            if(!dot[i].eaten)
-            {
+            if(!dot[i].eaten){
                 dot[i].draw(g);
             }
         }
-        if(pacman.collision(blinky) || pacman.collision(pinky) || pacman.collision(inky) || pacman.collision(clyde))
-        {
+
+        if(((pacman.collision(blinky) && !blinky.dead) || (pacman.collision(pinky) && !pinky.dead) ||
+            (pacman.collision(inky) && !inky.dead) || (pacman.collision(clyde) && !clyde.dead)) && !powerUp){
             gameOver = true;
             g.Sleep(500);
         }
+        else if(pacman.collision(blinky) && powerUp){
+            blinky.setDirection(STOP);
+            blinky.erase(g);
+            pacman.draw(g);
+            blinky.setDirection(RIGHT);
+            if(!blinky.dead)
+            {
+                score += 50;
+            }
+            blinky.dead = true;
+        }
+        else if(pacman.collision(pinky) && powerUp){
+            pinky.setDirection(STOP);
+            pinky.erase(g);
+            pacman.draw(g);
+            pinky.setDirection(RIGHT);
+            if(!pinky.dead)
+            {
+                score += 50;
+            }
+            pinky.dead = true;
+        }
+        else if(pacman.collision(inky) && powerUp){
+            inky.setDirection(STOP);
+            inky.erase(g);
+            pacman.draw(g);
+            inky.setDirection(RIGHT);
+            if(!inky.dead)
+            {
+                score += 50;
+            }
+            inky.dead = true;
+        }
+        else if(pacman.collision(clyde) && powerUp){
+            clyde.setDirection(STOP);
+            clyde.erase(g);
+            pacman.draw(g);
+            clyde.setDirection(RIGHT);
+            if(!clyde.dead)
+            {
+                score += 50;
+            }
+            clyde.dead = true;
+        }
 
-        if(score == 2500)
-        {
+        if(score == 2500){
             gameOver = true;
             win = true;
         }
 
         g.update();
-        g.Sleep(10);
+        g.Sleep(5);
     }
     if (win)
     {

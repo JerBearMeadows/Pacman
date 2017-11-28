@@ -8,8 +8,12 @@
 
 using namespace std;
 
+
+
 const int MAX_ROW = 12;
 const int MAX_COL = 10;
+
+//void openLetters(char&);
 
 void plotLetter(char letter[MAX_ROW][MAX_COL],int row,int col,Point p,SDL_Plotter& g, int scale);
 
