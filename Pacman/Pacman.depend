@@ -330,3 +330,47 @@
 	<fstream>
 	<cstdlib>
 
+1509572172 source:c:\users\jerem\documents\codeblocks\pacman\circle.cpp
+	"circle.h"
+
+1509572172 c:\users\jerem\documents\codeblocks\pacman\circle.h
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+	<cmath>
+
+1509572172 source:c:\users\jerem\documents\codeblocks\pacman\line.cpp
+	"line.h"
+
+1509572172 c:\users\jerem\documents\codeblocks\pacman\line.h
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+
+1509572172 source:c:\users\jerem\documents\codeblocks\pacman\main.cpp
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+	"line.h"
+	"rectangle.h"
+	"triangle.h"
+	"circle.h"
+	<iostream>
+
+1509572172 c:\users\jerem\documents\codeblocks\pacman\rectangle.h
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+
+1509572172 c:\users\jerem\documents\codeblocks\pacman\triangle.h
+	"SDL_Plotter.h"
+	"color.h"
+	"point.h"
+	"line.h"
+
+1509572172 source:c:\users\jerem\documents\codeblocks\pacman\rectangle.cpp
+	"rectangle.h"
+
+1509572172 source:c:\users\jerem\documents\codeblocks\pacman\triangle.cpp
+	"triangle.h"
+
